@@ -1,4 +1,5 @@
 # vueProject
+```
 vue搭建后台系统管理页面
 终端：
 git init   //初始化git
@@ -39,3 +40,5 @@ $ ssh-keygen -t rsa -C "youremail@example.com"
 title随意
 key 将 C:\Users\Administrator\.ssh\id_rsa.pub 的全部内容拷入到key中保存
 然后 提交地址选择ssh而不要用https
+
+```
