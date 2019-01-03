@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>知识点</title>
+</head>
+<body>
+<p>内核</p>
+<pre>
+IE       trident
+Google   blink
+Firfox   Gecko
+Opera    presto - blink
+Safari   webkit
+</pre>
+<p>清除浮动</p>
+<pre>
+	.clear:{*zoom:1}
+	.clearfix:before{
+		content:' ';
+		display:block;
+		height:0;
+		clear:both;
+		overflow:hidden;
+	}
+</pre>
+<p>rem.js</p>
+<pre>
+	(function(win,doc){
+		let html = document.getElementsByTagName('html')[0];
+		let resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize';
+
+		function change(){
+			if(win.innerWidth >=750){
+				html.style.fontSize = '100px'
+			}else{
+				html.style.fontSize = (win.innerWidth/750)*100 + 'px'
+			}
+		}
+		if(!doc.addEventListener){return false}
+		win.addEventListener(resizeEvt,change,false)
+		doc.addEventListener('DOMContentLoaded',change,false)
+	})(window,document)
+</pre>
+<p>移动端meta标签</p>
+<pre>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, i, b, textarea, button, input, select,em  {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    color: #313131;
+    box-sizing: border-box;
+    font-weight: lighter;
+    font-family: 'Source Han Sans CN';
+    -webkit-tap-highlight-color:transparent;
+}
+a,button,input,em{-webkit-tab-highlight-color:rgba(0,0,0,0)}
+a:focus,em:focus,input:focus{outline:none}
+.font0{font-size:0;}
+.font20{font-size:20px;}
+.fontW-b{font-weight:bold;}
+.ta_c{text-align: center;}
+.clearfix{*zoom:1}
+.clearfix:after{
+    content:' ';
+    display: block;
+    width:0;
+    height:0;
+    overflow: hidden;
+    clear:both;
+}
+.dp_n{display: none;}
+.dp_i{display: inline-block;}
+.dp_b{display: block;}
+.pos-r{position:relative;}
+.pos-a{position:absolute;}
