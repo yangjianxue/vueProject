@@ -2,7 +2,7 @@
 	<div ref="pageWid" class="font0 dp_b">
 		<div class="pos-r">
 			<a v-for="pic in picsUrl" :href="pic.linkUrl" class="imgSty" ref="picData">
-				<img v-lazy="pic.url">
+				<img :src="pic.url">
 			</a>
 		</div>
 	</div>
@@ -60,7 +60,7 @@ export default{
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic95.jpg'
+					url:'../static/img/pic05.jpg'
 				},
 				{
 					linkUrl:'www.baidu.com',
