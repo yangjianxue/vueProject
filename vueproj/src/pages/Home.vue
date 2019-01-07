@@ -38,24 +38,26 @@
 		}
 	}
 </script>
-<style scoped>
+<style scoped lang='less'>
 /*http://elm.cangdu.org/shopping/v2/restaurant/category*/
 *{margin:0;padding:0}
 .scrollWrap{
 	width:100%;
 	background:#abcdef;
+	ul{
+		list-style:none;
+		li{
+			width:100%;
+			font:0.36rem/0.48rem microsoft yahei;
+			margin-top:0.2rem;
+			background:#eee;
+			color:#333;
+		}
+	}
 }
-ul,li{list-style:none;}
 img{
 	width:100%;
 	margin:0 auto;
-}
-li{
-	width:100%;
-	font:0.36rem/0.48rem microsoft yahei;
-	margin-top:0.2rem;
-	background:#eee;
-	color:#333;
 }
 </style>
 

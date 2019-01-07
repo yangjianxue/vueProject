@@ -59,6 +59,6 @@ export default{
 	}
 }
 </script>
-<style>
+<style lang="less">
 	.mt_20{margin-top:20px;}
 </style>

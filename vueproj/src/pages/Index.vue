@@ -1,5 +1,5 @@
 <template>
-	<div class="testWrapp" :style="winHSty">
+	<div class="testWrapp">
 		<div class="sideBar">
 			<!-- <ul class="submenu">
                 <li class="subMenuLi" v-for="nav in navData" :key="nav.id" @click.stop.prevent="handleMenu(nav.id)">{{nav.navOne}}
@@ -9,18 +9,17 @@
                 </li>
             </ul>-->
             <hr	/>
-           <ul class="submenu">
+           <ul class="submenu" :style="winHSty">
                 <li class="subMenuLi" v-for="(nav,index) in navData" :index="nav.id">
-                	<p class="menuFir" @click="handleTestMenu(nav.id)">
+                	<p class="menuFir"  @click.stop.prevent="handleMenu(nav.id)">
                 		<span>{{nav.navOne}}</span>
                 		<em @click.stop='addItem(index)' class="addIcon">add</em>
                 	</p>
-                    <ul class="menuItem" style="display:none" ref="menuItem">
+                    <ul class="menuItem" v-show="currentTab==nav.id">
                         <li v-for="(item,key) in nav.navTwo" :key="item.id" :class="{editing:isEditItem == item}">
                         	<div class="showLi">
-                        		<!-- <span @click="editHandle"></span> -->
                         		<router-link :to="{ path: item.path }">
-                        			<span class="secTitle" @dblclick="editHandle(item)">{{item.title}}</span>
+                        			<span class="secTitle" @dblclick.stop.prevent="editHandle(item)">{{item.title}}</span>
                         		</router-link>
                         		<span class="dp_i" @click="removeItem(index,key)">×</span>
                         	</div>
@@ -66,7 +65,7 @@ export default{
 							"path":'/Part2'
 						},
 						{
-							title:'导航1.3',
+							title:'瀑布流懒加载',
 							id:"03",
 							"path":'/Part3'
 						}
@@ -92,6 +91,27 @@ export default{
 							"path":'/Part6'
 						}
 					]
+				},
+				{
+					navOne:'导航三',
+					id:2,
+					navTwo:[
+						{
+							title:'导航3.1',
+							id:"21",
+							"path":'/Part7'
+						},
+						{
+							title:'导航3.2',
+							id:"22",
+							"path":'/Part8'
+						},
+						{
+							title:'导航3.3',
+							id:"23",
+							"path":'/Part9'
+						}
+					]
 				}
 			]
 		}
@@ -106,6 +126,7 @@ export default{
 		},
 		handleMenu(i){
 			this.currentTab = i;
+			sessionStorage.setItem('tab',i)
 		},
 		handleTestMenu(i){
 			let currentTab = this.$refs.menuItem[i];
@@ -116,7 +137,6 @@ export default{
 			}
 		},
 		addItem(index){
-			console.log(index)
 			var secIndex = this.navData[index].navTwo.length+1
 			this.navData[index].navTwo.push({
 				title:'导航'+(index+1)+'.'+secIndex,
@@ -125,17 +145,14 @@ export default{
 			})
 		},
 		removeItem(fir,sec){
-			console.log(fir,sec)
 			this.navData[fir].navTwo.splice(sec,1)
 		},
 		editHandle(item){
-			console.log(item)
 			this.isEditItem = item;
 		},
 		confirmEdit(item){
 
 			this.isEditItem = ''
-			console.log(this.isEditItem)
 		}
 	},
 	directives:{
@@ -151,8 +168,7 @@ export default{
 		this.winHeight();
 	},
 	mounted(){
-
-		this.$refs.menuItem[0].style.display= 'block'
+		this.currentTab = sessionStorage.getItem('tab')
 	}
 }
 </script>
@@ -227,7 +243,7 @@ export default{
 .rightMainWrap{
 	flex:1;
 }
-.active{
+.active span{
 	color:#f03a26;
 }
 </style>

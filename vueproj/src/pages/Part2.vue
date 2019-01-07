@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<p>{{msg}}</p>
 		<div id="echartMain" class="echartMain" style="width:600px;height:400px;"></div>
 	</div>
 </template>
@@ -60,10 +59,10 @@ export default{
 	}
 }
 </script>
-<style>
+<style lang="less">
 	.echartMain{
 		border:1px solid #abcdef;
-		margin:0 auto;
+		margin:50px auto 0;
 	}
 </style>
 

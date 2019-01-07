@@ -9,6 +9,7 @@ const Index = () => import('@/pages/Index')
 const Part1 = () => import('@/pages/Part1')
 const Part2 = () => import('@/pages/Part2')
 const Part3 = () => import('@/pages/Part3')
+const Part4 = () => import('@/pages/Part4')
 
 Vue.use(Router)
 
@@ -45,7 +46,13 @@ export default new Router({
           path:'/part3',
           name:'part3',
           component:Part3
-        }
+        },
+    {
+      path:'/part4',
+      name:'part4',
+      component:Part4
+    }
+        
       ]
     }
   ]

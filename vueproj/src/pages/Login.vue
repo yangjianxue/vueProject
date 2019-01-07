@@ -116,53 +116,49 @@ export default{
 	}
 }
 </script>
-<style scoped>
+<style scoped lang="less">
 	.mt_20{margin-top:20px;}
 	.ml_20{margin-left:20px;}
 	.font20{font-size:20px;}
+	@colorAbcdef:#abcdef;
 	.loginWrap{
 		width:100%;
 		display:flex;
 		justify-content:center;
 		align-items:flex-end;
 		font-size:0;
-	}
-	.loginMain{
-		align-self:center;
-		border:1px solid #abcdef;
-		padding:20px;
-	}
-	label{font-size:14px;}
-	.iptSty{
-		padding:2px 4px;
-		width:200px;
-		font:12px/16px microsoft yahei;
-		color:#333;
-		border:1px solid #abcdef;
-	}
-	.btnSty{
-		display:inline-block;
-		padding:2px 4px;
-		font:14px/20px microsoft yahei;
-		border:1px solid #abcdef;
-		color:#333;
-	}
-	.loginBtn{
-		background:#abcdef;
-	}
-	.errTip{
-		margin-left:42px;
-		height:20px;
-		font:12px/20px microsoft yahei;
-		color:#f00;
+		.loginMain{
+			align-self:center;
+			border:1px solid @colorAbcdef;
+			padding:20px;
+		}
+		label{font-size:14px;}
+		.iptSty{
+			padding:2px 4px;
+			width:200px;
+			font:12px/16px microsoft yahei;
+			color:#333;
+			border:1px solid @colorAbcdef;
+		}
+		.btnSty{
+			display:inline-block;
+			padding:2px 4px;
+			font:14px/20px microsoft yahei;
+			border:1px solid @colorAbcdef;
+			color:#333;
+		}
+		.loginBtn{
+			background:@colorAbcdef;
+		}
+		.errTip{
+			margin-left:42px;
+			height:20px;
+			font:12px/20px microsoft yahei;
+			color:#f00;
+		}
 	}
 </style>
-
-
-
 /*
-
-
 Vue.directive('color-swatch', function (el, binding) {
   el.style.backgroundColor = binding.value
 })
