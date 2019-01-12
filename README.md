@@ -41,4 +41,7 @@ title随意
 key 将 C:\Users\Administrator\.ssh\id_rsa.pub 的全部内容拷入到key中保存
 然后 提交地址选择ssh而不要用https
 
+安装 cnpm:npm install -g cnpm --registry=https://registry.npm.taobao.org
+常看cnpm状态： cnpm -v
+
 ```
