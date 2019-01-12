@@ -1,5 +1,4 @@
 <template>
-	<!-- <div class="scrollWrap clearfix"> -->
 	<div class="scrollWrap clearfix" ref="wrap" @mouseenter="removeTimer" @mouseleave="addTimer">
 		<ul class="scrollUl" :style="moveUl">
 			<li v-for="(item,index) of objImgComp" :key="index"><img :src="item.img"></li>

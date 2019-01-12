@@ -8,21 +8,11 @@ Vue.use(Vuex)
 const state = {
 	userInfo:JSON.parse(sessionStorage.getItem('userInfo')),
 	selfInfo:[],
-	echartsData:[5,20,36,10,60,20]
+	echartsData:[5,20,36,10,60]
 }
 
 const getters = {
-	// randomData:state =>{
-		
-	// }
-	// randomData(){
-	// 	for (let i = 0;i <= )
-	// },
-	// randomEchartsData(){
-	// 	setInterval(()=>{
-	// 		console.log('111')
-	// 	},1000)
-	// }
+
 }
 
 //mutation - 同步操作共享数据
@@ -63,19 +53,21 @@ const actions= {
 	getEchartsData({commit}){
 		
 		let dataArr = [
-				[25,22,16,40,12,32],
-				[15,21,30,20,70,40],
-				[25,22,26,30,90,20],
-				[35,23,16,40,10,24],
-				[6,23,16,40,10,31],
-				[20,23,16,40,10,26],
-				[10,12,16,31,12,25],
-				[12,25,14,40,21,14],
-				[21,16,16,24,31,12],
-				[30,19,18,40,14,23],
-				[3,20,16,10,23,32],
-				[8,30,20,14,14,43]
+				[25,22,16,40,12],
+				[15,21,30,20,70],
+				[25,22,26,30,90],
+				[35,23,16,40,10],
+				[6,23,16,40,10],
+				[20,23,16,40,10],
+				[10,12,16,31,12],
+				[12,25,14,40,21],
+				[21,16,16,24,31],
+				[30,19,18,40,14],
+				[3,20,16,10,23],
+				[8,30,20,14,14]
 			]
+			let index = Math.floor(Math.random() * 12)
+			commit('getEchartsData',dataArr[index])
 		let timer = setInterval( ()=>{
 			let index = Math.floor(Math.random() * 12)
 			// console.log('索引' + index)

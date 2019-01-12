@@ -13,23 +13,41 @@ export default{
 			msg:'我是part2',
 			echartMain:'',
 			options:{
+				//标题
 				title:{
-					text:'echarts 入门实例'
+					text:'实时在线人数',
+					subtext:'数据纯属虚构'
 				},
-				tooltip:{},
+				// 工具提示
+				tooltip:{
+					show:true,
+				},
+				//图例
 				legend:{
-					data:['销量']
+					data:['浏览器当前在线人数']
 				},
+				// x轴
 				xAxis:{
-					data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+					type: 'category',//横轴默认是category 是分离
+					data:["Chrome","IE","Firfox","safari","Opera"]
 				},
-				yAxis:{},
+				// y轴
+				yAxis:[
+					{
+						type:'value',//纵轴默认是数据 value
+						axisLabel: {
+				            formatter: '{value} W'
+				        },
+					}
+				],
+				// 核心配置
 				series:[{
-					name:'销量',
-					type:'bar',
-					data:[]
+					name:'浏览器当前在线人数',  //和legend必须是对应的
+					type:'bar',   //报表的类型 bar是柱状图 line是折线图 scatter是散点图
+					data:[]       //核心数据
 				}]
-			}
+			},
+			timer:''
 		}
 	},
 	mounted(){
@@ -39,9 +57,9 @@ export default{
 		// this.$store.getters.randomEchartsData()
 		
 
-		setInterval(() =>{
+		this.timer = setInterval(() =>{
 			this.getEchartsData().then( ()=>{
-				// console.log(this.optionData)
+				console.log(this.optionData)
 				this.options.series[0].data = this.optionData
 				this.echartMain.setOption(this.options)
 			})
@@ -56,6 +74,9 @@ export default{
 	},
 	methods:{
 		...mapActions(['getEchartsData'])
+	},
+	destroyed(){
+		clearInterval(this.timer)
 	}
 }
 </script>

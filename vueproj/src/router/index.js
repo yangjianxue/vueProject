@@ -10,6 +10,8 @@ const Part1 = () => import('@/pages/Part1')
 const Part2 = () => import('@/pages/Part2')
 const Part3 = () => import('@/pages/Part3')
 const Part4 = () => import('@/pages/Part4')
+const Part5 = () => import('@/pages/Part5') 
+const Part6 = () => import('@/pages/Part6')
 
 Vue.use(Router)
 
@@ -43,17 +45,26 @@ export default new Router({
           component:Part2
         },
         {
+          path:'/part5',
+          name:'part5',
+          component:Part5
+        },
+        {
+          path:'/part6',
+          name:'part6',
+          component:Part6
+        }
+      ]
+    },
+        {
           path:'/part3',
           name:'part3',
           component:Part3
         },
-    {
-      path:'/part4',
-      name:'part4',
-      component:Part4
-    }
-        
-      ]
-    }
+        {
+          path:'/part4',
+          name:'part4',
+          component:Part4
+        }
   ]
 })

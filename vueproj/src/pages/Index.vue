@@ -1,15 +1,15 @@
 <template>
 	<div class="testWrapp">
 		<div class="sideBar">
-			<!-- <ul class="submenu">
+		    <p class="titleP">后台管理系统</p>
+		    <!-- <ul class="submenu">
                 <li class="subMenuLi" v-for="nav in navData" :key="nav.id" @click.stop.prevent="handleMenu(nav.id)">{{nav.navOne}}
                     <ul class="nav-child" v-show="currentTab==nav.id">
                         <li v-for="item in nav.navTwo" :key="item.id">{{item.title}}</li>
                     </ul>
                 </li>
             </ul>-->
-            <hr	/>
-           <ul class="submenu" :style="winHSty">
+            <ul class="submenu" :style="winHSty">
                 <li class="subMenuLi" v-for="(nav,index) in navData" :index="nav.id">
                 	<p class="menuFir"  @click.stop.prevent="handleMenu(nav.id)">
                 		<span>{{nav.navOne}}</span>
@@ -65,7 +65,7 @@ export default{
 							"path":'/Part2'
 						},
 						{
-							title:'瀑布流懒加载',
+							title:'瀑布流图片展示',
 							id:"03",
 							"path":'/Part3'
 						}
@@ -76,7 +76,7 @@ export default{
 					id:1,
 					navTwo:[
 						{
-							title:'导航2.1',
+							title:'瀑布流图片懒加载',
 							id:"11",
 							"path":'/Part4'
 						},
@@ -86,7 +86,7 @@ export default{
 							"path":'/Part5'
 						},
 						{
-							title:'导航2.3',
+							title:'调用分页组件',
 							id:"13",
 							"path":'/Part6'
 						}
@@ -168,88 +168,95 @@ export default{
 		this.winHeight();
 	},
 	mounted(){
-		this.currentTab = sessionStorage.getItem('tab')
+		this.currentTab = sessionStorage.getItem('tab') ? sessionStorage.getItem('tab') : 0
+		// console.log(this.curr)
 	}
 }
 </script>
-<style scoped>
+<style scoped lang="less">
 .testWrapp{
 	display:flex;
 	width:100%;
-}
-.sideBar{
-	padding:20px;
-	width:300px;
-	background:#eee;
-	align-self:stretch;
-}
-.subMenuLi{
-	font:18px/40px microsoft yahei;
-	color:#333;
-	cursor:pointer;
-	background:#9999cc;
-}
-.menuFir{
-	padding:0 10px;
-	background:#f44b3b;
-}
-.menuFir span{
-	display: inline-block;
-	font:16px/40px microsoft yahei;
-	color:#fff;
-	background:#f44b3b;
-}
-.addIcon{
-	float:right;
-	font:16px/40px microsoft yahei;
-	color:#fff;
-}
-.nav-child,.menuItem{
-	background:#fff;
-}
-.menuItem li{
-	padding: 0 15px;
-	border-bottom:1px solid #eee;
-}
-.menuItem li a,.secTitle{
-	font:14px/32px microsoft yahei;
-	display:inline-block;
-	width:80%;
-}
-.nav-child li a:hover,.menuItem li a:hover{
-	color:#f03a26;
-}
-.menuItem li.editing .showLi{
-	display: none;
-}
-.menuItem li input{
-	display: none
-}
-.menuItem li.editing input{
-	display: block;
-	padding:0 2px;
-	font:14px/32px microsoft yahei;
-	display:inline-block;
-	width:80%;
-	border:1px solid #eee;
-}
-.removeIcon{
-	display: none;
-}
-.menuItem li:hover .removeIcon{
-	display: block;
-}
+	.sideBar{
+		width:300px;
+		background:#eee;
+		align-self:stretch;
+		.titleP{
+			padding-left:10px;
+			font:16px/60px microsoft yahei;
+			color:#fff;
+			background:#f44b3b;
+			border-bottom:2px solid #eee;
+		}
+	}
+	ul{
+		padding-left:20px;
+		padding-right:20px;
+		.subMenuLi{
+			font:18px/40px microsoft yahei;
+			color:#333;
+			cursor:pointer;
+			background:#9999cc;
+			.menuFir{
+				padding:0 10px;
+				background:#f44b3b;
+				span{
+					display: inline-block;
+					font:16px/40px microsoft yahei;
+					color:#fff;
+					background:#f44b3b;
+				}
+				.addIcon{
+					float:right;
+					font:16px/40px microsoft yahei;
+					color:#fff;
+				}
+			}
+			.menuItem{
+				background:#fff;
+				li{
+					padding: 0 15px;
+					border-bottom:1px solid #eee;
+					a{
+						font:14px/32px microsoft yahei;
+						display:inline-block;
+						width:80%;
+						&:hover{
+							color:#f03a26;
+						}
+						.secTitle{
+							font:14px/32px microsoft yahei;
+							display:inline-block;
+							width:80%;
+						}
+						&.active span{
+							color:#f03a26;
+						}
+					}
+					input{
+						display: none
+					}
+					&.editing input{
+						display: block;
+						padding:0 2px;
+						font:14px/32px microsoft yahei;
+						display:inline-block;
+						width:80%;
+						border:1px solid #eee;
+					}
+					&.editing .showLi{
+						display: none;
+					}
+				}
+			}
+		}
 
-.rightMainWrap{
-	flex:1;
-}
-.active span{
-	color:#f03a26;
+	}
+	.rightMainWrap{
+		flex:1;
+	}
 }
 </style>
-
-
-
 /*
 * 1、点击第一个li，第一个li展开，点击第二个li，第一个li闭合，第二个li展开
 	(当前只有一个li 展开)

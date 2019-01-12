@@ -1,9 +1,5 @@
 <template>
 	<div class="scrollWrap clearfix" @mouseenter="removeTimer" @mouseleave="addTimer">
-		<!-- <transition name="slide-fade">
-				<p v-show="show">测试切换</p>
-			</transition>
-			<button @click='textToggle'>切换</button> -->
 		<ul class="scrollUl">
 			<transition-group name="fade">
 				<li v-for="(item,index) of objImgComp" v-show="currIndex == index" :key="index"><img :src="item.img"></li>

@@ -1,13 +1,16 @@
 <template>
-	<div ref="pageWid" class="font0 dp_b">
-		<div class="pos-r">
+	<div ref="pageWid" class="pageWrap font0">
+		<div class="btn mb_20" @click="returnHome">返回首页</div>
+		<div class="pos-r clearfix" ref="picWrap">
 			<a v-for="pic in picsUrl" :href="pic.linkUrl" class="imgSty" ref="picData">
 				<img :src="pic.url">
 			</a>
 		</div>
+		<returnTop></returnTop>
 	</div>
 </template>
 <script>
+	import returnTop from '../components/returnTop'
 export default{
 	name:'part3',
 	data(){
@@ -134,30 +137,26 @@ export default{
 					linkUrl:'www.baidu.com',
 					url:'../static/img/pic01.jpg'
 				}
-
 			],
 			cols:5,
 			hArr:[],
 			minHeight:0,
 			currIndex:0,
-			pageWidth:(document.documentElement.clientWidth || document.body.clientWidth) - 300
+			pageWidth:(document.documentElement.clientWidth || document.body.clientWidth)
 		}
 	},
 	methods:{
 		randomPic(){
-			var newArrData =[];
-			for(let i = 0;i < 5;i++ ){
+			for(var i=0;i<3;i++){
 				let index = parseInt(Math.random()*9)
-				newArrData.push(this.picsUrl[i])
+				this.picsUrl.push(this.picsUrl[index])
+				this.compMinTop()
 			}
-			this.picsUrl.push(newArrData)
-			// this.compMinTop()
 		},
 		compMinTop(){
 
 			var timer = setTimeout(()=>{
 				this.hArr=[]
-				console.log(this.pageWidth)
 				// 获取 当前page页（pageWid）一排可以防止几张图片，图片宽度默认为200px
 				this.cols = parseInt(this.pageWidth/200)
 				// 为高度数组添加默认值
@@ -177,6 +176,7 @@ export default{
 						this.hArr[i] = picArr[i].offsetHeight;
 						picArr[i].style.left = i * 200 + 'px'
 					}else{
+						//console.log(picArr[i] + '距离顶部的高度为：'+ picArr[i].getBoundingClientRect().top)
 						//超出第一排的每张图片单独定位
 						this.minHeight = this.hArr[0]
 						this.currIndex = 0
@@ -194,41 +194,73 @@ export default{
 
 						}
 						picArr[i].style.top = this.minHeight + 'px'
-						// console.log(this.currIndex)
 						picArr[i].style.left = this.currIndex * 200 + 'px'	
 						this.hArr[this.currIndex] += picArr[i].offsetHeight
 					}
 				}
 				clearInterval(timer)
 			},100)
+		},
+		scrollHandle(){
+			let winClientHeight = document.documentElement.clientHeight || document.body.clientWidth;
+			let winScrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
+			let lastindex = this.picsUrl.length-1
+			console.log(parseInt(this.$refs.picData[lastindex].style.top),winClientHeight)
+			if(parseInt(this.$refs.picData[lastindex].style.top) > winClientHeight){
+				this.randomPic()
+			}
+		},
+		returnHome(){
+			this.$router.push('./index')
 		}
-
 	},
 
 	mounted(){
-		var _this = this
-		_this.compMinTop()
-		//_this.randomPic()
-		// window.addEventListener('scroll',function(){
-		// 	var winClientHeight = document.documentElement.clientHeight - 60;
-		// 	console.log(winClientHeight)
-		// 	// if()
-		// },false)
+		this.compMinTop()
+		window.addEventListener('scroll',this.scrollHandle,false)
+		// 	let lastindex = this.picsUrl.length-1
+		// 	console.log(this.$refs.picWrap)
+		// 	console.log(parseInt(this.$refs.picData[lastindex]),winClientHeight)
+		// let winClientHeight = document.documentElement.clientHeight || document.body.clientWidth;
+		// setInterval(function(){
+
+		// 	if(parseInt(this.$refs.picData[lastindex].style.top) < winClientHeight){
+		// 		this.randomPic()
+		// 	}
+		// },800)
+	},
+	components:{
+		returnTop
 	}
 
 }
 </script>
 <style lang="less">
-	.imgSty{
-		position:absolute;
-		top:0;
-		left:0;
-		display:inline-block;
-		width:200px;
-		img{
-			width:100%;
-			border:1px solid #666;
-			box-sizing:border-box;
+	.pageWrap{
+		padding:10px;
+		.mb_20{margin-bottom:20px;}
+		.btn{
+			display:inline-block;
+			padding:4px 6px;
+			font:16px/18px microsoft yahei;
+			color:#fff;
+			background:#fa788a;
+			border-radius:4px;
+			cursor:pointer;
+		}
+		.imgSty{
+			position:absolute;
+			top:0;
+			left:0;
+			display:inline-block;
+			width:200px;
+			img{
+				width:100%;
+				border:1px solid #666;
+				box-sizing:border-box;
+
+			}
 		}
 	}
+	
 </style>
