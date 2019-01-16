@@ -136,9 +136,10 @@
 .dotWrap li{
 	float:left;
 	margin-right:4px;
-	width:10px;
-	height:10px;
-	background: rgba(0,0,0,.3)
+	width:20px;
+	height:6px;
+	background: rgba(0,0,0,.3);
+	border-radius:4px;
 }
 .dotWrap li.active{
 	background: rgba(0,0,0,1)	

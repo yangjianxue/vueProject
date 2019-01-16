@@ -22,6 +22,8 @@ export default{
 				tooltip:{
 					show:true,
 				},
+				//图标颜色
+				color:['#abcdef'],
 				//图例
 				legend:{
 					data:['浏览器当前在线人数']
@@ -29,7 +31,7 @@ export default{
 				// x轴
 				xAxis:{
 					type: 'category',//横轴默认是category 是分离
-					data:["Chrome","IE","Firfox","safari","Opera"]
+					data:["IE","Chrome","Firfox","safari","Opera"]
 				},
 				// y轴
 				yAxis:[
@@ -44,6 +46,7 @@ export default{
 				series:[{
 					name:'浏览器当前在线人数',  //和legend必须是对应的
 					type:'bar',   //报表的类型 bar是柱状图 line是折线图 scatter是散点图
+					barWidth: '50%',
 					data:[]       //核心数据
 				}]
 			},
@@ -59,7 +62,7 @@ export default{
 
 		this.timer = setInterval(() =>{
 			this.getEchartsData().then( ()=>{
-				console.log(this.optionData)
+				// console.log(this.optionData)
 				this.options.series[0].data = this.optionData
 				this.echartMain.setOption(this.options)
 			})

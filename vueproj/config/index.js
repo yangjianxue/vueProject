@@ -25,7 +25,14 @@ module.exports = {
               pathRewrite:{
                 "^/ap":''
               }
-            }
+            },
+            '/elm':{
+              target:'http://elm.cangdu.org/shopping/',
+              changeOrigin:true,
+              pathRewrite:{
+                '^/elm':''
+              }
+            },
         },
 
     // Various Dev Server settings

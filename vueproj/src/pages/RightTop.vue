@@ -1,8 +1,8 @@
 <template>
-	<div class="rightTop">
-		<div class="colorfff"><span class="el-icon-setting colorfff mr_10"></span>我是数据库中取出的姓名-{{userInfo.trueName}}</div>
-		<div class="colorfff"><span class="el-icon-setting colorfff mr_10"></span>我是github接口中取出的姓名{{data.login}}</div>
-	</div>
+	<nav class="rightTop">
+		<div class="colorfff"><span class="el-icon-setting colorfff mr_10">┝</span>我是数据库中取出的姓名-{{userInfo.trueName}}</div>
+		<div class="colorfff"><span class="el-icon-setting colorfff mr_10">┝</span>我是github接口中取出的姓名{{data.login}}</div>
+	</nav>
 </template>
 <script>
 import {mapState,mapActions,mapMutations} from 'vuex'

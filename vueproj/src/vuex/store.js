@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const state = {
 	userInfo:JSON.parse(sessionStorage.getItem('userInfo')),
 	selfInfo:[],
-	echartsData:[5,20,36,10,60]
+	echartsData:[5,20,36,10,60],
+	categoryData:[]
 }
 
 const getters = {
@@ -28,6 +29,9 @@ const mutations = {
 	},
 	getEchartsData(state,echartsData){
 		state.echartsData = echartsData
+	},
+	getCategoryData(state,categoryData){
+		state.categoryData = categoryData
 	}
 }
 //触发mutations
@@ -75,6 +79,17 @@ const actions= {
 			commit('getEchartsData',dataArr[index])
 			clearInterval(timer)
 		},2000)
+	},
+	getCategoryData({commit}){
+		return new Promise( (resolve,reject) =>{
+			axios.get('/elm/v2/restaurant/category')
+			.then( res =>{
+				// console.log(res)
+				commit('getCategoryData',res)
+				// console.log(res)
+				resolve()
+			})
+		})
 	}
 }
 export default new Vuex.Store({

@@ -3,7 +3,7 @@
 		<ul class="paginationCon clearfix mb_20 fr">
 			<li @click="goFirstPage">first</li>
 			<li @click="goPrevPage">prev</li>
-			<li v-for="item in shouPageArr" @click="goCurrPage(item)" :class="{active:optionsVal.currIndex == (item)}">{{item}}</li>
+			<li v-for="item in totalDataPage" @click="goCurrPage(item)" :class="{active:optionsVal.currIndex == (item)}">{{item}}</li>
 			<li @click="goNextPage">next</li>
 			<li @click="goLastPage">last</li>
 		</ul>
@@ -28,7 +28,8 @@
 				totalDataLen:0,
 				//总共的页码数
 				totalDataPage:0,
-				shouPageArr:[]
+				shouPageArr:[],
+				datas:[],
 			}
 		},
 		props:{
@@ -42,6 +43,7 @@
 		methods:{
 			//初始化
 			initPagination(currIndex){
+				// console.log(this.optionsVal.totalData)
 				this.initShowPageArr(currIndex)
 				//计算总的数据条数
 				this.totalDataLen = parseInt(this.optionsVal.totalData.length);
@@ -52,6 +54,7 @@
 			},
 			//当前显示的page总页数
 			initShowPageArr(currShowPage){
+				// console.log()
 				//currShowPage 为页码数组的最后一项数值
 				this.shouPageArr = []
 				let start = currShowPage - this.optionsVal.shouPage +1
@@ -122,12 +125,23 @@
 				this.optionsVal.currIndex = this.totalDataPage
 				this.initShowPageArr(this.optionsVal.currIndex)
 				this.goCurrPage(this.optionsVal.currIndex)
+			},
+			updata(){
+				this.optionsVal = this.options;
+				this.optionsVal.currIndex = sessionStorage.getItem('currIndex') ? sessionStorage.getItem('currIndex') :this.optionsVal.currIndex
+				this.initShowPageArr()
+				this.initPagination(this.optionsVal.currIndex)
+			}
+		},
+		watch:{
+			'options.totalData':function(n,o){
+				this.optionsVal.totalData = n
+
+				this.updata()
 			}
 		},
 		mounted(){
-			this.optionsVal = this.options;
-			this.optionsVal.currIndex = sessionStorage.getItem('currIndex') ? sessionStorage.getItem('currIndex') :this.optionsVal.currIndex
-			this.initPagination(this.optionsVal.currIndex)
+			this.updata()
 		}
 	}
 </script>
@@ -146,7 +160,7 @@
 			&:last-child{
 				border-right:none;
 			}
-			&.btnIsActive,&.active{
+			&.btnIsActive,&.btnIsActive:hover,&.active,&.active:hover{
 				color:#fff;
 				background:#fa788a
 			}

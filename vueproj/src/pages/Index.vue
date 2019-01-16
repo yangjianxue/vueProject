@@ -11,17 +11,18 @@
             </ul>-->
             <ul class="submenu" :style="winHSty">
                 <li class="subMenuLi" v-for="(nav,index) in navData" :index="nav.id">
-                	<p class="menuFir"  @click.stop.prevent="handleMenu(nav.id)">
+                	<p class="menuFir" @click.stop.prevent="handleTestMenu(nav.id)">
                 		<span>{{nav.navOne}}</span>
                 		<em @click.stop='addItem(index)' class="addIcon">add</em>
                 	</p>
-                    <ul class="menuItem" v-show="currentTab==nav.id">
+                    <ul class="menuItem" ref="menuItems" v-show="isShow">
                         <li v-for="(item,key) in nav.navTwo" :key="item.id" :class="{editing:isEditItem == item}">
                         	<div class="showLi">
                         		<router-link :to="{ path: item.path }">
-                        			<span class="secTitle" @dblclick.stop.prevent="editHandle(item)">{{item.title}}</span>
+                        			<span class="secTitle" :title="item.title">{{item.title}}</span>
                         		</router-link>
                         		<span class="dp_i" @click="removeItem(index,key)">×</span>
+                        		<span class="editIcon dp_i" @click.stop.prevent="editHandle(item)">☜</span>
                         	</div>
                         	<input type="text" v-model='item.title' v-focus="isEditItem == item" @blur="confirmEdit(item)">
                         </li>
@@ -55,17 +56,17 @@ export default{
 					id:0,
 					navTwo:[
 						{
-							title:'轮播图',
+							title:'轮播图练习',
 							id:"01",
 							"path":'/Part1'
 						},
 						{
-							title:'echart-图表',
+							title:'echart-图表练习',
 							id:"02",
 							"path":'/Part2'
 						},
 						{
-							title:'瀑布流图片展示',
+							title:'瀑布流懒加载练习',
 							id:"03",
 							"path":'/Part3'
 						}
@@ -76,7 +77,7 @@ export default{
 					id:1,
 					navTwo:[
 						{
-							title:'瀑布流图片懒加载',
+							title:'瀑布流懒加载插件练习',
 							id:"11",
 							"path":'/Part4'
 						},
@@ -86,7 +87,7 @@ export default{
 							"path":'/Part5'
 						},
 						{
-							title:'调用分页组件',
+							title:'分页练习',
 							id:"13",
 							"path":'/Part6'
 						}
@@ -113,7 +114,8 @@ export default{
 						}
 					]
 				}
-			]
+			],
+			isShow:true
 		}
 	},
 	components:{
@@ -129,7 +131,11 @@ export default{
 			sessionStorage.setItem('tab',i)
 		},
 		handleTestMenu(i){
-			let currentTab = this.$refs.menuItem[i];
+			// console.log(i)
+			this.currentTab = i;
+			sessionStorage.setItem('tab',i)
+			 // console.log( this.$refs.menuItems)
+			let currentTab = this.$refs.menuItems[i];
 			if(currentTab.style.display == 'none'){
 				currentTab.style.display = 'block'
 			}else{
@@ -148,10 +154,10 @@ export default{
 			this.navData[fir].navTwo.splice(sec,1)
 		},
 		editHandle(item){
+			// console.log(item)
 			this.isEditItem = item;
 		},
 		confirmEdit(item){
-
 			this.isEditItem = ''
 		}
 	},
@@ -220,14 +226,18 @@ export default{
 					a{
 						font:14px/32px microsoft yahei;
 						display:inline-block;
-						width:80%;
+						width:75%;
 						&:hover{
 							color:#f03a26;
 						}
 						.secTitle{
 							font:14px/32px microsoft yahei;
 							display:inline-block;
-							width:80%;
+							width:98%;
+							overflow:hidden;
+							text-overflow:ellipsis;
+							white-space:nowrap;
+							vertical-align:middle;
 						}
 						&.active span{
 							color:#f03a26;
@@ -241,7 +251,7 @@ export default{
 						padding:0 2px;
 						font:14px/32px microsoft yahei;
 						display:inline-block;
-						width:80%;
+						width:100%;
 						border:1px solid #eee;
 					}
 					&.editing .showLi{

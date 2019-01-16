@@ -4,6 +4,7 @@
 		<div class="pos-r clearfix" ref="picWrap">
 			<a v-for="pic in picsUrl" :href="pic.linkUrl" class="imgSty" ref="picData">
 				<img :src="pic.url">
+				<p>{{pic.desc}}</p>
 			</a>
 		</div>
 		<returnTop></returnTop>
@@ -19,130 +20,153 @@ export default{
 			picsUrl:[
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic01.jpg',
+					desc:'我是第一张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic02.jpg'
+					url:'../static/img/pic02.jpg',
+					desc:'我是第二张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic03.jpg'
+					url:'../static/img/pic03.jpg',
+					desc:'我是第三张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic04.jpg'
+					url:'../static/img/pic04.jpg',
+					desc:'我是第四张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic05.jpg'
+					url:'../static/img/pic05.jpg',
+					desc:'我是第五张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic06.jpg'
+					url:'../static/img/pic06.jpg',
+					desc:'我是第六张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic07.jpg'
+					url:'../static/img/pic07.jpg',
+					desc:'我是第七张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic01.jpg',
+					desc:'我是第一张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic02.jpg'
+					url:'../static/img/pic02.jpg',
+					desc:'我是第二张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic03.jpg'
+					url:'../static/img/pic03.jpg',
+					desc:'我是第三张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic04.jpg'
+					url:'../static/img/pic04.jpg',
+					desc:'我是第四张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic05.jpg'
+					url:'../static/img/pic05.jpg',
+					desc:'我是第五张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic06.jpg'
+					url:'../static/img/pic06.jpg',
+					desc:'我是第六张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic07.jpg'
+					url:'../static/img/pic07.jpg',
+					desc:'我是第七张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic08.jpg'
+					url:'../static/img/pic01.jpg',
+					desc:'我是第一张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic09.jpg'
+					url:'../static/img/pic02.jpg',
+					desc:'我是第二张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic03.jpg',
+					desc:'我是第三张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic02.jpg'
+					url:'../static/img/pic04.jpg',
+					desc:'我是第四张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic05.jpg',
+					desc:'我是第五张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic09.jpg'
+					url:'../static/img/pic06.jpg',
+					desc:'我是第六张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic07.jpg',
+					desc:'我是第七张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic02.jpg'
+					url:'../static/img/pic01.jpg',
+					desc:'我是第一张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic02.jpg',
+					desc:'我是第二张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic03.jpg',
+					desc:'我是第三张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic02.jpg'
+					url:'../static/img/pic04.jpg',
+					desc:'我是第四张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic05.jpg',
+					desc:'我是第五张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic09.jpg'
+					url:'../static/img/pic06.jpg',
+					desc:'我是第六张图片'
 				},
 				{
 					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
-				},
-				{
-					linkUrl:'www.baidu.com',
-					url:'../static/img/pic02.jpg'
-				},
-				{
-					linkUrl:'www.baidu.com',
-					url:'../static/img/pic01.jpg'
+					url:'../static/img/pic07.jpg',
+					desc:'我是第七张图片'
 				}
 			],
+			picsLen:0,
 			cols:5,
 			hArr:[],
 			minHeight:0,
 			currIndex:0,
-			pageWidth:(document.documentElement.clientWidth || document.body.clientWidth)
+			pageWidth:(document.documentElement.clientWidth || document.body.clientWidth),
+			isScroll:true,
+			resizeTimer:''
 		}
 	},
 	methods:{
@@ -154,8 +178,8 @@ export default{
 			}
 		},
 		compMinTop(){
-
 			var timer = setTimeout(()=>{
+				this.pageWidth = (document.documentElement.clientWidth || document.body.clientWidth);
 				this.hArr=[]
 				// 获取 当前page页（pageWid）一排可以防止几张图片，图片宽度默认为200px
 				this.cols = parseInt(this.pageWidth/200)
@@ -166,7 +190,8 @@ export default{
 				var picArr = this.$refs.picData
 				for(let i = 0;i < this.cols;i++){
 					this.hArr[i] = picArr[i].offsetHeight;
-					picArr[i].style.left = i * 200 + 'px'
+					picArr[i].style.top = 0 + 'px';
+					picArr[i].style.left = i * 200 + 'px';
 				}
 			
 				var picArr = this.$refs.picData
@@ -199,43 +224,57 @@ export default{
 					}
 				}
 				clearInterval(timer)
-			},100)
+			},90)
 		},
 		scrollHandle(){
 			let winClientHeight = document.documentElement.clientHeight || document.body.clientWidth;
 			let winScrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
-			let lastindex = this.picsUrl.length-1
-			console.log(parseInt(this.$refs.picData[lastindex].style.top),winClientHeight)
-			if(parseInt(this.$refs.picData[lastindex].style.top) > winClientHeight){
-				this.randomPic()
+			if(this.picsUrl.length && this.isScroll){
+				let lastindex = this.picsUrl.length - 1;
+				if(parseInt(this.$refs.picData[lastindex].style.top) < (winClientHeight + winScrollHeight)){
+					this.randomPic()
+				}
 			}
+			
 		},
 		returnHome(){
+			sessionStorage.setItem('tab',0)
 			this.$router.push('./index')
+		},
+		changeResize(){
+			var _this = this;
+			this.timer = setTimeout(function(){
+				_this.compMinTop();
+			},400)
 		}
 	},
 
 	mounted(){
 		this.compMinTop()
+		//当页面滚动到底部时，加载随机图片
 		window.addEventListener('scroll',this.scrollHandle,false)
-		// 	let lastindex = this.picsUrl.length-1
-		// 	console.log(this.$refs.picWrap)
-		// 	console.log(parseInt(this.$refs.picData[lastindex]),winClientHeight)
-		// let winClientHeight = document.documentElement.clientHeight || document.body.clientWidth;
-		// setInterval(function(){
-
-		// 	if(parseInt(this.$refs.picData[lastindex].style.top) < winClientHeight){
-		// 		this.randomPic()
-		// 	}
-		// },800)
+		//窗口发生改变时重新计算每行的图片位置
+		window.addEventListener('resize',this.changeResize,false)
 	},
 	components:{
 		returnTop
+	},
+	destroyed(){
+		this.isScroll = false;
+		clearTimeout(this.timer)
+		window.removeEventListener('scroll',this.scrollHandle,false)
+		//窗口发生改变时重新计算每行的图片位置
+		window.removeEventListener('resize',this.changeResize,false)
 	}
 
 }
 </script>
 <style lang="less">
+	@keyframes fadeAnim{
+		0%{opacity:0}
+		50%{opacity:0.5}
+		100%{opacity:1}
+	}
 	.pageWrap{
 		padding:10px;
 		.mb_20{margin-bottom:20px;}
@@ -244,7 +283,7 @@ export default{
 			padding:4px 6px;
 			font:16px/18px microsoft yahei;
 			color:#fff;
-			background:#fa788a;
+			background:rgba(250,120,138,.8);
 			border-radius:4px;
 			cursor:pointer;
 		}
@@ -254,11 +293,24 @@ export default{
 			left:0;
 			display:inline-block;
 			width:200px;
+			
+			box-sizing:border-box;
+			padding:10px;
+			p{
+				width:182px;
+				height:20px;
+				font:14px/20px microsoft yahei;
+				color:rgba(250,120,138,1);
+				text-align:center;
+				border:1px solid #666;
+				border-top:none;
+				border-radius:0 0 20px 20px;
+			}
 			img{
 				width:100%;
 				border:1px solid #666;
-				box-sizing:border-box;
-
+				border-bottom:none;
+				border-radius:20px 20px 0 0;
 			}
 		}
 	}

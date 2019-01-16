@@ -1,7 +1,7 @@
 <template>
 	<div class="wrap">
 		
-		<div class="mt_20">
+		<!-- <div class="mt_20">
 			<animatedShow :obj="obj"></animatedShow>
 		</div>
 		<p class="ta_c fontW-b font20">点击切换</p>
@@ -9,12 +9,11 @@
 		<div class="mt_20">
 			<animatedFade :obj="obj"></animatedFade>
 		</div>
-		<p class="ta_c fontW-b font20">fade切换</p>
+		<p class="ta_c fontW-b font20">fade切换</p> -->
 		
 		<div class="mt_20">
 			<animatedAnimate :obj="obj"></animatedAnimate>
 		</div>
-		<p class="ta_c fontW-b font20">无缝轮播</p>
 	</div>
 </template>
 <script>

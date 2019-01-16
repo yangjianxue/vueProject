@@ -101,7 +101,7 @@ export default{
 		this.getData();
 	},
 	mounted(){
-		console.log(this.$refs.ele.$el.children[1])
+		// console.log(this.$refs.ele.$el.children[1])
 	}
 }
 </script>
