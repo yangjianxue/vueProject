@@ -23,6 +23,9 @@ var tools = {
 	* 封装函数 insertAfter(a,b) 在a的后面插入b
 	*/
 	insertAfter:function(targetNode,afterNode){
-		var 
+		var beforNode = afterNode.nextElementNode;
+		if(beforNode){
+			this.inserBefore
+		}
 	}
 }
