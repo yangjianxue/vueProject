@@ -43,18 +43,19 @@
 		methods:{
 			//初始化
 			initPagination(currIndex){
-				// console.log(this.optionsVal.totalData)
 				this.initShowPageArr(currIndex)
 				//计算总的数据条数
 				this.totalDataLen = parseInt(this.optionsVal.totalData.length);
 				//计算总的页码数
 				this.totalDataPage = Math.ceil( this.totalDataLen/ parseInt(this.optionsVal.pageSize))
+				if(currIndex > this.totalDataPage){
+					currIndex = 1
+				}
 				this.goCurrPage(currIndex)
 				
 			},
 			//当前显示的page总页数
 			initShowPageArr(currShowPage){
-				// console.log()
 				//currShowPage 为页码数组的最后一项数值
 				this.shouPageArr = []
 				let start = currShowPage - this.optionsVal.shouPage +1

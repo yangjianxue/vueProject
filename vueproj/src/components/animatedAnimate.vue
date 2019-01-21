@@ -7,8 +7,8 @@
 			<li :class="{active:currIndex == index}" v-for="(item,index) of obj"></li>
 		</ul>
 		<div class="btn">
-			<span class="leftBtn" @click='leftHandle'>&lt;</span>
-			<span class="rightBtn" @click='rightHandle'>&gt;</span>
+			<span class="leftBtn" @click='leftHandle'></span>
+			<span class="rightBtn" @click='rightHandle'></span>
 		</div>
 	</div>
 	
@@ -119,65 +119,74 @@
 		}
 	}
 </script>
-<style scoped>
+<style scoped lang="less">
 .scrollWrap{
 	position:relative;
 	width:100%;
 	height:300px;
 	overflow:hidden;
-}
-
-.dotWrap{
-	position: absolute;
-	bottom:20px;
-	left:50%;
-	transform:translateX(-50%);
-}
-.dotWrap li{
-	float:left;
-	margin-right:4px;
-	width:20px;
-	height:6px;
-	background: rgba(0,0,0,.3);
-	border-radius:4px;
-}
-.dotWrap li.active{
-	background: rgba(0,0,0,1)	
-}
-.scrollUl{
-	position:absolute;
-	top:0;
-	left:0;
-	width:400%;
-}
-.scrollUl li{
-	float:left;
-	width:25%;
-	height:300px;
-	background: #abcdef;
-	text-align:center;
-	font:bold 30px/300px microsoft yahei;
-	overflow:hidden;
-}
-.btn{
-	
-}
-.leftBtn{
-	position: absolute;
-	top:50%;
-	transform:translateY(-50%);
-	left:20px;
-	font:30px/30px microsoft yahei;
-	color:#fff;
-	cursor:pointer;
-}
-.rightBtn{
-	position: absolute;
-	top:50%;
-	transform:translateY(-50%);
-	right:20px;
-	font:30px/30px microsoft yahei;
-	color:#fff;
-	cursor:pointer;
+	.scrollUl{
+		position:absolute;
+		top:0;
+		left:0;
+		width:400%;
+		li{
+			float:left;
+			width:25%;
+			height:300px;
+			background: #abcdef;
+			text-align:center;
+			font:bold 30px/300px microsoft yahei;
+			overflow:hidden;
+		}
+	}
+	.dotWrap{
+		position: absolute;
+		bottom:20px;
+		left:50%;
+		transform:translateX(-50%);
+		li{
+			float:left;
+			margin-right:4px;
+			width:20px;
+			height:6px;
+			background: rgba(0,0,0,.3);
+			border-radius:4px;
+			&.active{
+				background: rgba(0,0,0,1)	
+			}
+		}
+	}
+	.btn{
+		span{
+			position: absolute;
+			top:50%;
+			transform:translateY(-50%);
+			width:30px;
+			height:30px;
+			cursor:pointer;
+			opacity:0.8;
+		}
+		.leftBtn{
+			left:20px;
+			background:url('../assets/img/left.png') no-repeat;
+			background-size:100%;
+			&:hover{
+				background:url('../assets/img/leftActive.png') no-repeat;
+				background-size:100%;
+				opacity:0.8;
+			}
+		}
+		.rightBtn{
+			right:20px;
+			background:url('../assets/img/right.png') no-repeat;
+			background-size:100%;
+			&:hover{
+				background:url('../assets/img/rightActive.png') no-repeat;
+				background-size:100%;
+				opacity:0.8;
+			}
+		}
+	}
 }
 </style>

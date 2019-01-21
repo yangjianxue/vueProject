@@ -2,6 +2,7 @@
 	<div class="wrapCon">
 		{{msg}}
 		<div class="wrapMain">
+			<pagination @getData="getShowData($event)" :options="options"></pagination>
 			<ul class="dataUl">
 				<li v-for="(item,index) in initArr">
 					<span>{{item.name}}：</span>
@@ -10,12 +11,11 @@
 					</ul>
 				</li>
 			</ul>
-			<pagination @getData="getShowData($event)" :options="options"></pagination>
+			
 		</div>
 	</div>
 </template>
 <script>
-	import test from '../components/testA'
 	import pagination from '../components/pagination'
 	import {mapState,mapActions} from 'vuex'
 	export default{
@@ -36,9 +36,8 @@
 					//默认展示多少页
 					shouPage:5,
 					//当前展示第几页
-					currIndex:3
-				},
-				datas:[]
+					currIndex:1
+				}
 			}
 		},
 		methods:{
@@ -53,11 +52,15 @@
 			})
 		},
 		components:{
-			test,
 			pagination
 		},
 		mounted(){
-			
+			return new Promise((resolve,reject) =>{
+				this.getCategoryData().then(() =>{
+					this.options.totalData = this.categoryData.data
+					resolve(this.options.totalData)
+				})
+			})
 			//在当前组件中直接异步获取数据（更简洁，但是数据不能和其他组件共享）
 			// this.$axios.get('/elm/v2/index_entry')
 			// .then(data => {
@@ -66,13 +69,13 @@
 		},
 		created(){
 			//配合vuex中 -mapState -mapActive 从vuexstore中获取数据（其他组件也可以通过这种方式访问到而不需要重复发送请求，只需要在vuex中请求一次即可）
-			return new Promise((resolve,reject) =>{
-				this.getCategoryData().then(() =>{
-					this.options.totalData = this.categoryData.data
-					// console.log(this.options.totalData)
-					resolve()
-				})
-			})
+			// return new Promise((resolve,reject) =>{
+			// 	this.getCategoryData().then(() =>{
+			// 		this.options.totalData = this.categoryData.data
+			// 		console.log(this.options.totalData)
+			// 		resolve(this.options.totalData)
+			// 	})
+			// })
 			
 		}
 	}

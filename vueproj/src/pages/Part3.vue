@@ -1,5 +1,5 @@
 <template>
-	<div ref="pageWid" class="pageWrap font0">
+	<div ref="pageWid" class="pageWrap font0 pos-r">
 		<div class="btn mb_20" @click="returnHome">返回首页</div>
 		<div class="pos-r clearfix" ref="picWrap">
 			<a v-for="pic in picsUrl" :href="pic.linkUrl" class="imgSty" ref="picData">
@@ -7,6 +7,7 @@
 				<p>{{pic.desc}}</p>
 			</a>
 		</div>
+		<!-- <p class="footerTip">到底了</p> -->
 		<returnTop></returnTop>
 	</div>
 </template>
@@ -166,7 +167,8 @@ export default{
 			currIndex:0,
 			pageWidth:(document.documentElement.clientWidth || document.body.clientWidth),
 			isScroll:true,
-			resizeTimer:''
+			resizeTimer:'',
+			imgCound:0
 		}
 	},
 	methods:{
@@ -178,6 +180,8 @@ export default{
 			}
 		},
 		compMinTop(){
+			this.imgCound = this.picsUrl.length;
+			console.log(this.imgCound)
 			var timer = setTimeout(()=>{
 				this.pageWidth = (document.documentElement.clientWidth || document.body.clientWidth);
 				this.hArr=[]
@@ -255,6 +259,7 @@ export default{
 		window.addEventListener('scroll',this.scrollHandle,false)
 		//窗口发生改变时重新计算每行的图片位置
 		window.addEventListener('resize',this.changeResize,false)
+		// console.log(this.$route.params.id)
 	},
 	components:{
 		returnTop
@@ -312,6 +317,13 @@ export default{
 				border-bottom:none;
 				border-radius:20px 20px 0 0;
 			}
+		}
+		.footerTip{
+			position:absolute;
+			left:50%;
+			bottom:0;
+			font:20px/30px microsoft yahei;
+			color:#333;
 		}
 	}
 	

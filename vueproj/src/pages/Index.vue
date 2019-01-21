@@ -11,18 +11,20 @@
             </ul>-->
             <ul class="submenu" :style="winHSty">
                 <li class="subMenuLi" v-for="(nav,index) in navData" :index="nav.id">
-                	<p class="menuFir" @click.stop.prevent="handleTestMenu(nav.id)">
+                	<p class="menuFir" @click.stop.prevent="handleTestMenu(nav)">
                 		<span>{{nav.navOne}}</span>
-                		<em @click.stop='addItem(index)' class="addIcon">add</em>
+                		<em @click.stop='addItem(index)' class="addIcon"></em>
                 	</p>
-                    <ul class="menuItem" ref="menuItems" v-show="isShow">
+                    <ul class="menuItem" ref="menuItems" v-show="nav.isShow">
                         <li v-for="(item,key) in nav.navTwo" :key="item.id" :class="{editing:isEditItem == item}">
                         	<div class="showLi">
-                        		<router-link :to="{ path: item.path }">
+                        		<!-- <router-link :to="{ name: item.name ,params:{ id: item.id} }"> -->
+                        		<!-- <router-link :to="{ path: item.path }">
                         			<span class="secTitle" :title="item.title">{{item.title}}</span>
-                        		</router-link>
-                        		<span class="dp_i" @click="removeItem(index,key)">×</span>
-                        		<span class="editIcon dp_i" @click.stop.prevent="editHandle(item)">☜</span>
+                        		</router-link> -->
+                        		<p :class="navIndex === item.id ? 'router-link-exact-active active' : 'router-link-exact-active'"  @click="routerLink(item.id, item.path)">{{ item.title }}</p>
+                        		<span class="removeIcon dp_i" @click="removeItem(index,key)">×</span>
+                        		<span class="editIcon dp_i" @click.stop.prevent="editHandle(item)"></span>
                         	</div>
                         	<input type="text" v-model='item.title' v-focus="isEditItem == item" @blur="confirmEdit(item)">
                         </li>
@@ -54,6 +56,7 @@ export default{
 				{
 					navOne:'导航一',
 					id:0,
+					isShow:true,
 					navTwo:[
 						{
 							title:'轮播图练习',
@@ -75,6 +78,7 @@ export default{
 				{
 					navOne:'导航二',
 					id:1,
+					isShow:true,
 					navTwo:[
 						{
 							title:'瀑布流懒加载插件练习',
@@ -82,7 +86,7 @@ export default{
 							"path":'/Part4'
 						},
 						{
-							title:'导航2.2',
+							title:'MockJs模拟数据',
 							id:"12",
 							"path":'/Part5'
 						},
@@ -96,6 +100,7 @@ export default{
 				{
 					navOne:'导航三',
 					id:2,
+					isShow:true,
 					navTwo:[
 						{
 							title:'导航3.1',
@@ -115,13 +120,20 @@ export default{
 					]
 				}
 			],
-			isShow:true
+			navIndex:''
 		}
 	},
 	components:{
 		RightTop
 	},
 	methods:{
+		routerLink(index, path) {
+			sessionStorage.setItem('navIndex',index)
+		  // 点击哪个路由就赋值给自定义的下标
+		  this.navIndex = index;
+		  // 路由跳转
+		  this.$router.push(path)
+		},
 		winHeight(){
 			let winH = window.innerHeight;
 			this.winHSty.height = winH +'px'
@@ -130,17 +142,19 @@ export default{
 			this.currentTab = i;
 			sessionStorage.setItem('tab',i)
 		},
-		handleTestMenu(i){
+		handleTestMenu(item){
+			item.isShow = !item.isShow
+			// sessionStorage.setItem('tab',item.isShow)
 			// console.log(i)
-			this.currentTab = i;
-			sessionStorage.setItem('tab',i)
-			 // console.log( this.$refs.menuItems)
-			let currentTab = this.$refs.menuItems[i];
-			if(currentTab.style.display == 'none'){
-				currentTab.style.display = 'block'
-			}else{
-				currentTab.style.display = 'none'
-			}
+			// this.currentTab = i;
+			// sessionStorage.setItem('tab',i)
+			// console.log(this.$refs.menuItems[i].style.display)
+			// let currentTab = this.$refs.menuItems[i];
+			// if(currentTab.style.display == 'none' || currentTab.style.display == ''){
+			// 	currentTab.style.display = 'block'
+			// }else{
+			// 	currentTab.style.display = 'none'
+			// }
 		},
 		addItem(index){
 			var secIndex = this.navData[index].navTwo.length+1
@@ -151,14 +165,20 @@ export default{
 			})
 		},
 		removeItem(fir,sec){
-			this.navData[fir].navTwo.splice(sec,1)
+			if(fir > 1 || sec > 2){
+				this.navData[fir].navTwo.splice(sec,1)
+			}else{
+				alert('此项不可删除')
+			}
+			sessionStorage.setItem('navData',JSON.stringify(this.navData))
 		},
 		editHandle(item){
-			// console.log(item)
 			this.isEditItem = item;
 		},
 		confirmEdit(item){
-			this.isEditItem = ''
+			this.isEditItem = '';
+
+			sessionStorage.setItem('navData',JSON.stringify(this.navData))
 		}
 	},
 	directives:{
@@ -172,9 +192,12 @@ export default{
 	},
 	created(){
 		this.winHeight();
+		// console.log(this.$route.params.id)
 	},
 	mounted(){
-		this.currentTab = sessionStorage.getItem('tab') ? sessionStorage.getItem('tab') : 0
+		// this.currentTab = sessionStorage.getItem('tab') ? sessionStorage.getItem('tab') : 0
+		this.navIndex = sessionStorage.getItem('navIndex') ? sessionStorage.getItem('navIndex') :'01';
+		this.navData = JSON.parse(sessionStorage.getItem('navData')) ? JSON.parse(sessionStorage.getItem('navData')) : this.navData
 		// console.log(this.curr)
 	}
 }
@@ -206,49 +229,77 @@ export default{
 			.menuFir{
 				padding:0 10px;
 				background:#f44b3b;
+				display:flex;
+				flex-direction:row;
+				align-items:center;
 				span{
+					flex:1;
 					display: inline-block;
 					font:16px/40px microsoft yahei;
 					color:#fff;
 					background:#f44b3b;
 				}
 				.addIcon{
-					float:right;
-					font:16px/40px microsoft yahei;
-					color:#fff;
+					display:inline-block;
+					width:20px;
+					height:20px;
+					background:url('../assets/img/add.png') no-repeat center center;
+					background-size:100%;
+					vertical-align:middle;
 				}
 			}
 			.menuItem{
 				background:#fff;
 				li{
-					padding: 0 15px;
+					height:40px;
 					border-bottom:1px solid #eee;
-					a{
-						font:14px/32px microsoft yahei;
-						display:inline-block;
-						width:75%;
-						&:hover{
-							color:#f03a26;
-						}
-						.secTitle{
-							font:14px/32px microsoft yahei;
+					div{
+						display:flex;
+						flex-direction:row;
+						align-items:center;
+						p{
+							font:14px/40px microsoft yahei;
 							display:inline-block;
-							width:98%;
-							overflow:hidden;
-							text-overflow:ellipsis;
-							white-space:nowrap;
-							vertical-align:middle;
+							width:88%;
+							&:hover{
+								color:#f03a26;
+							}
+							.secTitle{
+								font:14px/40px microsoft yahei;
+								display:inline-block;
+								width:98%;
+								overflow:hidden;
+								text-overflow:ellipsis;
+								white-space:nowrap;
+								vertical-align:middle;
+							}
+							&.active{
+								color:#f03a26;
+							}
 						}
-						&.active span{
-							color:#f03a26;
+						.removeIcon{
+							font:25px/26px microsoft yahei;
+							display:none;
 						}
+						.editIcon{
+							display:none;
+							width:20px;
+							height:20px;
+							background:url(../assets/img/editIcon.jpg) no-repeat center center;
+							background-size:75%;
+						}
+					}
+					&:hover .removeIcon,&:hover .editIcon{
+						display: inline-block;
 					}
 					input{
-						display: none
+						display: none;
+						font:14px/32px microsoft yahei;
 					}
 					&.editing input{
-						display: block;
-						padding:0 2px;
+						padding:0 4px;
+						display: inline-block;
+						height:32px;
 						font:14px/32px microsoft yahei;
 						display:inline-block;
 						width:100%;
