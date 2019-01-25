@@ -1,7 +1,8 @@
 # vueProject
 ```
 该项目中涉及到的有：
-vue,vue-router,vuex,axios,echart,mock,轮播图，瀑布流懒加载，分页，弹窗，留言板
+express,vue,vue-router,vuex,axios,echart,mock,less
+轮播图,瀑布流懒加载,分页,弹窗,留言板,选项卡
 ```
 
 
