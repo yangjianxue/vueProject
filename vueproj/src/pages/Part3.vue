@@ -173,7 +173,7 @@ export default{
 	},
 	methods:{
 		randomPic(){
-			for(var i=0;i<3;i++){
+			for(let i=0;i<3;i++){
 				let index = parseInt(Math.random()*9)
 				this.picsUrl.push(this.picsUrl[index])
 				this.compMinTop()
@@ -181,24 +181,24 @@ export default{
 		},
 		compMinTop(){
 			this.imgCound = this.picsUrl.length;
-			console.log(this.imgCound)
-			var timer = setTimeout(()=>{
+			let timer = setTimeout(()=>{
 				this.pageWidth = (document.documentElement.clientWidth || document.body.clientWidth);
 				this.hArr=[]
 				// 获取 当前page页（pageWid）一排可以防止几张图片，图片宽度默认为200px
 				this.cols = parseInt(this.pageWidth/200)
 				// 为高度数组添加默认值
-				for(let i = 0;i < this.cols; i++){
-					this.hArr.push(0)
-				}
-				var picArr = this.$refs.picData
+				// for(let i = 0;i < this.cols; i++){
+				// 	this.hArr.push(0)
+				// }
+				//es6新增的数组填充 （arr.fill(要填充的东西,开始填充的下标,结束填充的下标)）
+				this.hArr.fill(0,0,this.cols)  
+				let picArr = this.$refs.picData
 				for(let i = 0;i < this.cols;i++){
 					this.hArr[i] = picArr[i].offsetHeight;
-					picArr[i].style.top = 0 + 'px';
-					picArr[i].style.left = i * 200 + 'px';
+					// picArr[i].style.cssText = "transition:opacity 1s;opacity:1;top:" + 0 + "px;left:" + i * 200 + 'px'
+					picArr[i].style.cssText = `transition:opacity 1s;opacity:1;top:0px;left:${i * 200}px`
 				}
 			
-				var picArr = this.$refs.picData
 				for(let i = this.cols;i < picArr.length;i++){
 					//获取第一排图片的高度值添加到this.hArr数组中并将第一排图片进行定位
 					if(i<this.cols){
@@ -213,7 +213,7 @@ export default{
 							this.currIndex = 0	
 						}
 
-						for(var j = 0;j < this.hArr.length; j++){
+						for(let j = 0;j < this.hArr.length; j++){
 							if(parseInt(this.minHeight) > parseInt(this.hArr[j])){
 								this.minHeight = this.hArr[j] 
 								this.currIndex = j
@@ -222,8 +222,10 @@ export default{
 							}
 
 						}
-						picArr[i].style.top = this.minHeight + 'px'
-						picArr[i].style.left = this.currIndex * 200 + 'px'	
+						picArr[i].style.cssText = `transition:opacity 1s;opacity:1;top:${this.minHeight}px;left:${this.currIndex * 200}px`
+						// picArr[i].style.cssText = "transition:opacity 1s;opacity:1;"
+						// picArr[i].style.top = this.minHeight + 'px'
+						// picArr[i].style.left = this.currIndex * 200 + 'px'	
 						this.hArr[this.currIndex] += picArr[i].offsetHeight
 					}
 				}
@@ -231,7 +233,7 @@ export default{
 			},90)
 		},
 		scrollHandle(){
-			let winClientHeight = document.documentElement.clientHeight || document.body.clientWidth;
+			let winClientHeight = document.documentElement.clientHeight || document.body.clientHeight;
 			let winScrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
 			if(this.picsUrl.length && this.isScroll){
 				let lastindex = this.picsUrl.length - 1;
@@ -243,10 +245,11 @@ export default{
 		},
 		returnHome(){
 			sessionStorage.setItem('tab',0)
-			this.$router.push('./index')
+			// this.$router.push({path:`./01`})
+			history.back()
 		},
 		changeResize(){
-			var _this = this;
+			let _this = this;
 			this.timer = setTimeout(function(){
 				_this.compMinTop();
 			},400)
@@ -298,7 +301,7 @@ export default{
 			left:0;
 			display:inline-block;
 			width:200px;
-			
+			opacity:0;
 			box-sizing:border-box;
 			padding:10px;
 			p{

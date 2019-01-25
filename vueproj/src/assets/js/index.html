@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8" />
+		<style>
+			.box3{
+				width:800px;
+				height:500px;
+				border:3px solid #f00;
+				padding:10px;
+				background:#000;
+				opacity:0;
+				transition:all 1s ease;
+			}
+			/*.box3:hover{
+				opacity:1;
+				transition:all 3s ease;
+			}*/
+			.box3::after{
+				position:absolute;
+				display: block;
+				width:500px;
+				height:100px;
+				background:#f90;
+			}
+			.box31{
+				width:600px;
+				height:300px;
+				background: #f90;
+			}
+			.box311{
+				width:400px;
+				height:200px;
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+	
+
+<div id="root">
+	<!-- <p class="wrap">123</p>
+	<span class="box">456</span>
+	<a href="javascript:;" class="box1">百度</a> -->
+	<div class="box3">
+		<!-- <div class="box31">
+			<div class="box311"></div>
+		</div> -->
+	</div>
+</div>
+		</pre>
+		<script src="./tools.js"></script>
+		<script>
+			//截取url指定参数
+			// console.log(tools.cutHref('name','http://www.baidu.com?name=test&age=18'))
+			// 获取滚动条滚动的距离
+			//console.log(tools.getScrollOffset())
+			//在元素的后面追加元素
+			
+			// let root = document.getElementById('root'),
+			// 	wrap = document.getElementsByClassName('wrap')[0],
+			// 	box = document.getElementsByClassName('box')[0],
+			// 	box1 = document.getElementsByClassName('box1')[0];
+			// tools.insertAfter(box,box1)
+			// 获取当前可视区窗口的宽高
+			// console.log(tools.getViewportOffset())
+			// 获取box3的几何尺寸
+			// let box3 = document.getElementsByClassName('box3')[0]
+			// console.log(tools.getElementOffset(box3))
+			// console.log(tools.getStyle(box3,"width","after"))
+
+			//
+			let box311 = document.getElementsByClassName('box311')[0]
+			let box3 = document.getElementsByClassName('box3')[0]
+			let box31 = document.getElementsByClassName('box31')[0]
+			// console.log(tools.getElementPosition(box3))
+			// 
+			tools.addEvent(box3,"click",function(e = window.event){
+				tools.stopBubble(e)
+
+			},false)
+		</script>
+		<script>
+			var time = setTimeout(function(){
+				box3.style.cssText = "transition:opacity 5s;opacity:1;"
+			},5000)
+			
+		</script>
+	</body>
+</html>

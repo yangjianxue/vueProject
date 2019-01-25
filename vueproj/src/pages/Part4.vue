@@ -79,11 +79,11 @@ export default{
 		},
 		randomData(){
 
-			var newImgsArr =[]
-			for(var i = 0 ;i<30;i++){
-				var index = parseInt(Math.random()*7+1);
+			let newImgsArr =[]
+			for(let i = 0 ;i<30;i++){
+				let index = parseInt(Math.random()*7+1);
 				// console.log(index)
-				var obj = {
+				let obj = {
 					"src":`/static/img/pic0${index}.jpg`,
 				    "href": "https://www.baidu.com",
 				    "info": "一些图片描述文字"

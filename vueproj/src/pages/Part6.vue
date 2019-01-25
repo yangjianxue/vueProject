@@ -1,8 +1,8 @@
 <template>
 	<div class="wrapCon">
-		{{msg}}
-		<div class="wrapMain">
-			<pagination @getData="getShowData($event)" :options="options"></pagination>
+		<!-- {{msg}} -->
+		<div class="wrapMain mt_20">
+			<pagination @getData="getShowData($event)" :options="options" class="ml_20"></pagination>
 			<ul class="dataUl">
 				<li v-for="(item,index) in initArr">
 					<span>{{item.name}}：</span>
@@ -81,7 +81,9 @@
 	}
 </script>
 <style lang="less" scoped>
+	.mt_20{margin-top:20px;}
 	.mb_20{margin-bottom:20px;}
+	.ml_20{margin-left:20px;}
 	.wrapCon{
 		.wrapMain{
 			.dataUl{
