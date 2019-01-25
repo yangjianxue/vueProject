@@ -1,5 +1,11 @@
 # vueProject
 ```
+该项目中涉及到的有：
+vue,vue-router,vuex,axios,echart,mock,轮播图，瀑布流懒加载，分页，弹窗，留言板
+```
+
+
+```
 vue搭建后台系统管理页面
 终端：
 git init   //初始化git
