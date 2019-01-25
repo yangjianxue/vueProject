@@ -78,7 +78,7 @@ export default{
 					console.log(data)
 					if(_this.userNameIpt == data.username && _this.passWordIpt == data.passWord){
 						_this.$store.commit('saveInfo',data)
-						this.$router.push('/index')
+						this.$router.push('/part1/01')
 					}else{
 						alert('请输入正确的用户名和密码')
 					}
@@ -146,6 +146,7 @@ export default{
 			font:14px/20px microsoft yahei;
 			border:1px solid @colorAbcdef;
 			color:#333;
+			border-radius:4px;
 		}
 		.loginBtn{
 			background:@colorAbcdef;
