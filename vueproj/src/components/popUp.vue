@@ -95,6 +95,7 @@
 						text-align:center;
 						cursor:pointer;
 						box-sizing:border-box;
+						border-radius:4px;
 					}
 					.cancelBtn{
 						border:1px solid #fa788a;

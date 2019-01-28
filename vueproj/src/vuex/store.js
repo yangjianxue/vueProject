@@ -82,7 +82,7 @@ const actions= {
 	},
 	getCategoryData({commit}){
 		return new Promise( (resolve,reject) =>{
-			axios.get('/elm/v2/restaurant/category')
+			axios.get('/elm/shopping/v2/restaurant/category')
 			.then( res =>{
 				// console.log(res)
 				commit('getCategoryData',res)

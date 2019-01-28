@@ -1,7 +1,7 @@
 <template>
 	<div class="wrap">
 		
-		<!-- <div class="mt_20">
+		<div class="mt_20">
 			<animatedShow :obj="obj"></animatedShow>
 		</div>
 		<p class="ta_c fontW-b font20">点击切换</p>
@@ -9,17 +9,23 @@
 		<div class="mt_20">
 			<animatedFade :obj="obj"></animatedFade>
 		</div>
-		<p class="ta_c fontW-b font20">fade切换</p> -->
+		<p class="ta_c fontW-b font20">fade切换</p>
 		
 		<div class="mt_20">
 			<animatedAnimate :obj="obj"></animatedAnimate>
 		</div>
+		<p class="ta_c fontW-b font20">无缝切换</p>
+		<div class="mt_20">
+			<animatedVue :obj="obj"></animatedVue>
+		</div>
+		<p class="ta_c fontW-b font20">swiper组件</p>
 	</div>
 </template>
 <script>
 	import animatedShow from '../components/animatedShow.vue'
 	import animatedFade from '../components/animatedFade.vue'
 	import animatedAnimate from '../components/animatedAnimate.vue'
+	import animatedVue from '../components/animatedVue'
 export default{
 	name:'part1',
 	data(){
@@ -54,7 +60,8 @@ export default{
 	components:{
 		animatedShow,
 		animatedFade,
-		animatedAnimate
+		animatedAnimate,
+		animatedVue
 	}
 }
 </script>

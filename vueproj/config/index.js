@@ -27,7 +27,7 @@ module.exports = {
               }
             },
             '/elm':{
-              target:'http://elm.cangdu.org/shopping/',
+              target:'http://elm.cangdu.org/',
               changeOrigin:true,
               pathRewrite:{
                 '^/elm':''
