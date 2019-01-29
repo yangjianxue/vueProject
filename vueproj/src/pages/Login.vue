@@ -75,7 +75,7 @@ export default{
 				.then( res =>{
 					//console.log(res.data)
 					let data = res.data[0];
-					console.log(data)
+					// console.log(data)
 					if(_this.userNameIpt == data.username && _this.passWordIpt == data.passWord){
 						_this.$store.commit('saveInfo',data)
 						this.$router.push('/part1/01')

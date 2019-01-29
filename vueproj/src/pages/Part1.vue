@@ -63,6 +63,26 @@ export default{
 		animatedAnimate,
 		animatedVue
 	}
+	// ,
+	// beforeRouteEnter(to,from,next){
+	// 	// console.log(to)
+	// 	//路由守卫
+	// 	let isRequireLogin = to.matched.some(record => record.meta.requiresAuth),
+	// 	      storageUserInfo = sessionStorage.getItem('userInfo');
+	// 	  if(isRequireLogin && storageUserInfo){
+	// 	    if(to.path == '/Part1/01'){
+	// 	      next()
+	// 	    }else{
+	// 	      next('/Part1/01')
+	// 	    }
+	// 	  }else{
+	// 	      if(to.path == '/login'){
+	// 	        next()
+	// 	      }else{
+	// 	        next('/login')
+	// 	      }
+	// 	  }
+	// }
 }
 </script>
 <style lang="less">

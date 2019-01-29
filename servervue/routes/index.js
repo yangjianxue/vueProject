@@ -9,7 +9,6 @@ var router = express.Router();
 router.post('/checklogin', (req,res) =>{
 	//接受用户名和密码
 	let {username,passWord} = req.body;
-	console.log(username,passWord) 
 	res.send([
 		{"username" :"admin","passWord" :"111111","trueName":"测试","id":'0'}
 		// ,{"username" :"admin1","passWord" :"111111","trueName":"测试1","id":'1'}

@@ -18,7 +18,7 @@ import Axios from 'axios'
 Vue.prototype.$axios = Axios
 Vue.config.productionTip = false
 
-new Vue({
+let vm = new Vue({
   el: '#app',
   router,
   store,

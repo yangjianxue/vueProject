@@ -128,6 +128,7 @@ export default{
 	},
 	methods:{
 		routerLink(index, path) {
+			console.log(index, path)
 			sessionStorage.setItem('navIndex',index)
 		  // 点击哪个路由就赋值给自定义的下标
 		  this.navIndex = index;

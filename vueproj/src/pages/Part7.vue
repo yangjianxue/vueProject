@@ -39,7 +39,7 @@
 			this.$axios('/elm/shopping/v2/foods?offset=0&limit=20&restaurant_id=2')
 				.then((res) =>{
 					this.pages[0].foodData = res.data
-					console.log(res.data)
+					// console.log(res.data)
 					//img:https://fuss10.elemecdn.com/0/da/f42235e6929a5cb0e7013115ce78djpeg.jpeg
 				})
 		}
