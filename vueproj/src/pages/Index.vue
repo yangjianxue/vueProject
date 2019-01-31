@@ -108,14 +108,14 @@ export default{
 							"path":'/Part7/21'
 						},
 						{
-							title:'导航3.2',
+							title:'css3立方体',
 							id:"22",
-							"path":'/Part8'
+							"path":'/Part8/22'
 						},
 						{
 							title:'导航3.3',
 							id:"23",
-							"path":'/Part9'
+							"path":'/Part9/23'
 						}
 					]
 				}
@@ -128,7 +128,6 @@ export default{
 	},
 	methods:{
 		routerLink(index, path) {
-			console.log(index, path)
 			sessionStorage.setItem('navIndex',index)
 		  // 点击哪个路由就赋值给自定义的下标
 		  this.navIndex = index;

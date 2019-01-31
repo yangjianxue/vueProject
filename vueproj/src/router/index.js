@@ -12,6 +12,7 @@ const Part4 = () => import('@/pages/Part4')
 const Part5 = () => import('@/pages/Part5') 
 const Part6 = () => import('@/pages/Part6')
 const Part7 = () => import('@/pages/Part7')
+const Part8 = () => import('@/pages/Part8')
 
 Vue.use(Router)
 
@@ -56,6 +57,12 @@ const router = new Router({
           name:'part7',
           component:Part7,
           meta: { requiresAuth: true }
+        },
+        {
+          path:'/part8/:id',
+          name:'part8',
+          component:Part8,
+          meta:{ requiresAuth: true}
         }
       ]
     },
