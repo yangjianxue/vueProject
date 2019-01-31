@@ -13,6 +13,7 @@ const Part5 = () => import('@/pages/Part5')
 const Part6 = () => import('@/pages/Part6')
 const Part7 = () => import('@/pages/Part7')
 const Part8 = () => import('@/pages/Part8')
+const ErrorPage = () => import('@/pages/errorPage')
 
 Vue.use(Router)
 
@@ -20,7 +21,6 @@ const router = new Router({
   linkActiveClass:'active',
   mode:'history',
   routes: [
-  	
     {
       path:'/',
       name:'index',
@@ -82,6 +82,11 @@ const router = new Router({
       name:'part4',
       component:Part4,
       meta: { requiresAuth: true }
+    },
+    {
+      path:'/errorPage',
+      name:'errorPage',
+      component:ErrorPage
     }
   ]
 })
@@ -91,6 +96,7 @@ const router = new Router({
 router.beforeEach((to,from,next) =>{
   let isRequireLogin = to.matched.some(record => record.meta.requiresAuth),
       storageUserInfo = sessionStorage.getItem('userInfo');
+      console.log(to.path,isRequireLogin,storageUserInfo)
   if(isRequireLogin && storageUserInfo){
     if(to.path == '/'){
       next('/Part1/01')
@@ -99,6 +105,8 @@ router.beforeEach((to,from,next) =>{
     }
   }else{
       if(to.path == '/login'){
+        next()
+      }else if(to.path == '/errorPage'){
         next()
       }else{
         next('/login')

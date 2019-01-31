@@ -115,7 +115,7 @@ export default{
 						{
 							title:'导航3.3',
 							id:"23",
-							"path":'/Part9/23'
+							"path":'/errorPage'
 						}
 					]
 				}
