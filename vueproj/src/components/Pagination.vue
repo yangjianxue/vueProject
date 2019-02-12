@@ -7,7 +7,7 @@
 			<li @click="goNextPage">下一页</li>
 			<li @click="goLastPage">尾页</li>
 		</ul>
-		<div class="fontSty"><span class="ml_10">共{{totalDataPage}}页</span></div>
+		<div class="fontSty"><span class="ml_10">共{{totalDataPage}}页</span><span class="ml_10">跳转到第</span><input type="text" v-model="gotoPage" v-on:change="gotoPageHandle"><span>页</span></div>
 	</div>
 </template>
 <script>
@@ -130,6 +130,16 @@
 			gotoPageHandle(){
 				if(this.gotoPage >=1 && this.gotoPage <= this.totalDataPage){
 					this.goCurrPage(this.gotoPage)
+					if(this.gotoPage >= this.optionsVal.shouPage){
+						this.shouPageArr = this.shouPageArr.map((v,i,arr)=>{
+							return this.gotoPage - this.optionsVal.shouPage+1+i
+						})
+					}else{
+						this.shouPageArr = this.shouPageArr.map((v,i,arr)=>{
+							return i+1
+						})
+					}
+					
 				}
 			},
 			updata(){
