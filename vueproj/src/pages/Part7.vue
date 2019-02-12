@@ -4,11 +4,23 @@
 			<div class="tabOpt" v-for="(tab,index) in tabs" :class="{active:index == curIndex}" @click="handleTab(index)">{{tab}}</div>
 		</div>
 		<div class="tabPageWrap">
-			<div class="tabPage" v-for="(page,i) in pages" v-show="i == curIndex">{{page.title}}</div>
+			<div class="tabPage" v-for="(page,i) in pages" v-show="i == curIndex">
+				<ul class="restaurantUl" v-if="page.options">
+					<li v-for="list in page.foodData">
+						<img v-if="'https://fuss10.elemecdn.com'+list.image_url" :src="'https://fuss10.elemecdn.com'+list.image_url" :onerror="defaultImg">
+						<div>
+							<p class="title">{{list.title}}</p>
+							<p class="desc">{{list.description}}</p>
+						</div>
+					</li>
+				</ul>
+				<pagination @getData="getFoodData($event)" :options="page.options" class="mt_20" v-if="page.options"></pagination>
+			</div>
 		</div>
 	</div>
 </template>
 <script>
+	import pagination from '../components/pagination'
 	export default{
 		name:'part7',
 		data(){
@@ -20,6 +32,12 @@
 					{
 						'title':'我是第一页',
 						foodData:[],
+						options:{
+							totalData:[],
+							pageSize:5,
+							shouPage:3,
+							currIndex:1
+						}
 					},
 					{
 						'title':'我是第二页'
@@ -27,20 +45,30 @@
 					{
 						'title':'我是第三页'
 					}
-				]
+				],
+				defaultImg:'this.src = " ' + require("../assets/img/default.jpg")+' "',
+				
 			}
 		},
 		methods:{
 			handleTab(i){
 				this.curIndex = i
+			},
+			getFoodData(data){
+				// this.foodData = data
+				this.pages[0].foodData = data
 			}
 		},
+		components:{
+			pagination
+		},
 		mounted(){
-			this.$axios('/elm/shopping/v2/foods?offset=0&limit=20&restaurant_id=2')
+			// https://elm.cangdu.org/v2/index_entry
+			this.$axios('/elm/v2/index_entry')
 				.then((res) =>{
-					this.pages[0].foodData = res.data
-					// console.log(res.data)
+					this.pages[0].options.totalData = res.data
 					//img:https://fuss10.elemecdn.com/0/da/f42235e6929a5cb0e7013115ce78djpeg.jpeg
+					//img:https://elm.cangdu.org/img/
 				})
 		}
 	}
@@ -75,10 +103,30 @@
 		}
 		.tabPageWrap{
 			.tabPage{
-				
 				width:100%;
 				min-height:500px;
-				background:#eee;
+				.restaurantUl{
+					li{
+						display:flex;
+						flex-direction:row;
+						background:#fff;
+						border-bottom:1px solid #eee;
+						img{
+							width:100px;
+							height:100px;
+							border-radius:50%;
+						}
+						.title{
+							margin-top:20px;
+							font:bold 16px/18px microsoft yahei;
+							color:#333;
+						}
+						.desc{
+							font:14px/18px microsoft yahei;
+							color:#666;	
+						}
+					}
+				}
 			}
 		}
 	}

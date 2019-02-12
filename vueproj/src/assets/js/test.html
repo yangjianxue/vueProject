@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+		var obj = {
+			name:"sune",
+			age:12,
+			todo:function(){
+				console.log(this.name)
+			}
+		}
+
+		Object.keys(obj).forEach(function(key){
+			console.log(obj[key])
+		})
+	</script>
+</body>
+</html>

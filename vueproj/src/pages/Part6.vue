@@ -32,9 +32,9 @@
 					//所有数据
 					totalData:[],
 					//每页默认展示的条数
-					pageSize:5,
+					pageSize:1,
 					//默认展示多少页
-					shouPage:5,
+					shouPage:3,
 					//当前展示第几页
 					currIndex:1
 				}

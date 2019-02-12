@@ -1,12 +1,13 @@
 <template>
 	<div>
 		<ul class="paginationCon clearfix mb_20 fr">
-			<li @click="goFirstPage">first</li>
-			<li @click="goPrevPage">prev</li>
-			<li v-for="item in totalDataPage" @click="goCurrPage(item)" :class="{active:optionsVal.currIndex == (item)}">{{item}}</li>
-			<li @click="goNextPage">next</li>
-			<li @click="goLastPage">last</li>
+			<li @click="goFirstPage">首页</li>
+			<li @click="goPrevPage">上一页</li>
+			<li v-for="item in shouPageArr" @click="goCurrPage(item)" :class="{active:optionsVal.currIndex == (item)}">{{item}}</li>
+			<li @click="goNextPage">下一页</li>
+			<li @click="goLastPage">尾页</li>
 		</ul>
+		<div class="fontSty"><span class="ml_10">共{{totalDataPage}}页</span></div>
 	</div>
 </template>
 <script>
@@ -18,7 +19,7 @@
 					//每页展示的条数
 					pageSize:10,
 					//默认展示的页码数
-					shouPage:0,
+					shouPage:2,
 					//总共的数据
 					totalData:[],
 					//当前展示第几页
@@ -30,14 +31,12 @@
 				totalDataPage:0,
 				shouPageArr:[],
 				datas:[],
+				gotoPage:''
 			}
 		},
 		props:{
 			options:{
-				type:Object,
-				default:function(){
-					
-				}
+				type:Object
 			}
 		},
 		methods:{
@@ -127,17 +126,23 @@
 				this.initShowPageArr(this.optionsVal.currIndex)
 				this.goCurrPage(this.optionsVal.currIndex)
 			},
+			//跳转到某一页
+			gotoPageHandle(){
+				if(this.gotoPage >=1 && this.gotoPage <= this.totalDataPage){
+					this.goCurrPage(this.gotoPage)
+				}
+			},
 			updata(){
 				this.optionsVal = this.options;
 				this.optionsVal.currIndex = sessionStorage.getItem('currIndex') ? sessionStorage.getItem('currIndex') :this.optionsVal.currIndex
 				this.initShowPageArr()
 				this.initPagination(this.optionsVal.currIndex)
+
 			}
 		},
 		watch:{
 			'options.totalData':function(n,o){
 				this.optionsVal.totalData = n
-
 				this.updata()
 			}
 		},
@@ -168,6 +173,21 @@
 			&:hover{
 				color:#fa788a;
 			}
+		}
+	}
+	.ml_10{margin-left:10px;}
+	.fontSty{
+		display:inline-block;
+		vertical-align:super;
+		span{
+			font:16px/24px microsoft yahei;
+		}
+		input{
+			margin:0 2px;
+			padding:0 8px;
+			width:40px;
+			border:1px solid #eee;
+			text-align:center;
 		}
 	}
 </style>

@@ -96,7 +96,7 @@ const router = new Router({
 router.beforeEach((to,from,next) =>{
   let isRequireLogin = to.matched.some(record => record.meta.requiresAuth),
       storageUserInfo = sessionStorage.getItem('userInfo');
-      console.log(to.path,isRequireLogin,storageUserInfo)
+      // console.log(to.path,isRequireLogin,storageUserInfo)
   if(isRequireLogin && storageUserInfo){
     if(to.path == '/'){
       next('/Part1/01')
