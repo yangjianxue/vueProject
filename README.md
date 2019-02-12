@@ -4,6 +4,7 @@
 express,vue,vue-router,vuex,axios,es6,echart,mock,less,css3
 插件涉及到：swiper,lazyload
 组件涉及到：轮播图,瀑布流懒加载,分页,弹窗,留言板,选项卡,返回顶部
+账号：admin ,密码：111111
 ```
 
 
