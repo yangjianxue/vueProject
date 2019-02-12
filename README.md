@@ -9,14 +9,14 @@ express,vue,vue-router,vuex,axios,es6,echart,mock,less,css3
 
 
 ```
-vue搭建后台系统管理页面
+git 常用命令集合
 终端：
 git init   //初始化git
 git add . //提交版本放入暂存
 git commit -m '添加备注'  //提交到版本库
 git remote set-url origin git@github.com:yangjianxue/vueProject.git //提交路径
 git pull origin master : 获取git上master分支最新代码，防止代码冲突
-git push  -u origin master 第一次提交到远端仓库;以后用：git push origin master
+git push  -u origin master 第一次提交到远端仓库;以后用：git push origin master[git push <远程仓库别名> <本地仓库分支名>：将本地的某个分支推到远程仓库中]
 
 
 
@@ -33,6 +33,16 @@ git push  -u origin master 第一次提交到远端仓库;以后用：git push o
 合并某分支到当前分支 ： git merge <name>
   
 删除分支 ： git branch -d <name>
+
+合并分支(先切换到合并到哪个分支的) ： git merge <branch name> [注：branch name 是源分支名]
+
+冲突需要手动合并
+
+查看远程仓库名 ： git remote -v
+删除远程仓库名 ： git remote remove <远程仓库名>
+添加远程仓库名 ： git remote add <远程库别名[通常叫origin]> <远程仓库地址>
+修改远程仓库名 ： git remote set-url <需要修改的远程库别名> <远程仓库地址>
+
   
 
 ERROR:Repository not found.
