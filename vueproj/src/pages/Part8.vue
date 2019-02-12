@@ -1,5 +1,6 @@
 <template>
 	<div class="mainWrap">
+		<h3>css3-旋转立方体</h3>
 		<div class="conWrap">
 			<div class="partWrap">
 				<div class="part">我是第一面</div>
@@ -11,6 +12,7 @@
 			</div>
 		</div>
 		<hr>
+		<h3>css3-loading</h3>
 		<div class="loadWrap">
 			<ul class="loading">
 				<li></li>
@@ -61,7 +63,7 @@
 		.conWrap{
 			perspective:600px;
 			.partWrap{
-				margin:20px auto auto;
+				margin:auto;
 				width:600px;
 				height:600px;
 				position:relative;

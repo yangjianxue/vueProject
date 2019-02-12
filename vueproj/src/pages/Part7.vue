@@ -5,6 +5,7 @@
 		</div>
 		<div class="tabPageWrap">
 			<div class="tabPage" v-for="(page,i) in pages" v-show="i == curIndex">
+				{{page.title}}
 				<ul class="restaurantUl" v-if="page.options">
 					<li v-for="list in page.foodData">
 						<img v-if="'https://fuss10.elemecdn.com'+list.image_url" :src="'https://fuss10.elemecdn.com'+list.image_url" :onerror="defaultImg">

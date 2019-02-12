@@ -108,7 +108,7 @@ export default{
 							"path":'/Part7/21'
 						},
 						{
-							title:'css3立方体',
+							title:'css3练习',
 							id:"22",
 							"path":'/Part8/22'
 						},
